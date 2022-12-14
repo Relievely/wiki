@@ -4,6 +4,7 @@ import pino_http from "pino-http";
 import bodyParser from "body-parser";
 import multer, {Multer} from "multer";
 import {creation} from "./routes/creation";
+import {wiki} from "./routes/wiki";
 
 const form: Multer = multer();
 export const routes = (app: Express) => {
@@ -16,6 +17,7 @@ export const routes = (app: Express) => {
     app.use(pino_http());
     app.use(bodyParser.urlencoded({extended: true}))
     app.use(bodyParser.json())
-    app.use(form.any())
+    app.use(form.any());
     app.use(creation);
+    app.use("/wiki",wiki);
 }
